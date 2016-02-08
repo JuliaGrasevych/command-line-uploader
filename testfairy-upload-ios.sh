@@ -53,7 +53,7 @@ verify_settings() {
 	fi
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 1 ] && [ $# -ne 2 ]; then
 	usage
 	exit 1
 fi
@@ -63,6 +63,11 @@ verify_tools
 verify_settings
 
 IPA_FILENAME=$1
+
+if [ $# -eq 2 ]; then
+	COMMENT=$2
+fi
+
 if [ ! -f "${IPA_FILENAME}" ]; then
 	usage
 	echo "Can't find file: ${IPA_FILENAME}"
